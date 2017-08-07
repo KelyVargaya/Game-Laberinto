@@ -11,30 +11,34 @@ var mapa=[
 "*o*__*________**W*",
 "******************"];
 
-var map = [];
+var mapita = [];
 for (var i = 0; i < mapa.length; i++){
-  map[i]=[];
+  mapita[i]=[];
   for (var j = 0; j < mapa[0].length; j++) {
-    map[i][j]=mapa[i][j];
+    mapita[i][j]=mapa[i][j];
   }
 }
 
-function generarMapa(map) {
+function generarMapa(mapita) {
   laberinto.innerHTML='';
   var tabla = document.createElement('table');
   tabla.setAttribute("class","celdita");
-  for (var i = 0; i < map.length; i++) {
+  for (var i = 0; i < mapita.length; i++) {
     var fila = document.createElement('tr');
-    for (var j = 0; j < map[i].length; j++) {
+    for (var j = 0; j < mapita
+[i].length; j++) {
         var celda = document.createElement('td');
-        if(map[i][j]=='*'){
+        if(mapita
+    [i][j]=='*'){
           celda.setAttribute("class","celda");
-        } else if(map[i][j]=='o'){
+        } else if(mapita
+    [i][j]=='o'){
           x=j;
           y=i;
-          celda.style.backgroundColor='blue';
-        } else if (map[i][j]=='W') {
-          celda.style.backgroundColor='green';
+          celda.setAttribute("class","inicio");
+        } else if (mapita
+    [i][j]=='W') {
+          celda.setAttribute("class","final");
         }
         fila.appendChild(celda);
     }
@@ -43,4 +47,40 @@ function generarMapa(map) {
   laberinto.appendChild(tabla);
 }
 
-generarMapa(map);
+generarMapa(mapita);
+
+
+arriba.onclick=function() {
+  if(mapita[y-1][x]!='*'){
+    mapita[y][x]='_';
+    y-=1;
+    mapita[y][x]='o';
+    generarMapa(mapita);
+  }
+}
+
+derecha.onclick=function() {
+  if(mapita[y][x+1]!='*'){
+    mapita[y][x]='_';
+    x+=1;
+    mapita[y][x]='o';
+    generarMapa(mapita);
+  }
+}
+
+izquierda.onclick=function() {
+  if(mapita[y][x-1]!='*'){
+    mapita[y][x]='_';
+    x-=1;
+    mapita[y][x]='o';
+    generarMapa(mapita);
+  }
+}
+abajo.onclick=function() {
+  if(mapita[y+1][x]!='*'){
+    mapita[y][x]='_';
+    y+=1;
+    mapita[y][x]='o';
+    generarMapa(mapita);
+  }
+}
