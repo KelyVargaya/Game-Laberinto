@@ -1,4 +1,3 @@
-var actual;
 var x;
 var y;
 var mapa=[
@@ -21,7 +20,7 @@ for (var i = 0; i < mapa.length; i++){
     mapita[i][j]=mapa[i][j];
   }
 }
-/*var mapa2=[
+var mapa2=[
 "****************",
 "*______________*",
 "*______________*",
@@ -40,7 +39,7 @@ for (var i = 0; i < mapa2.length; i++){
     mapit[i][j]=mapa2[i][j];
   }
 }
-*/
+
 function generarMapa(mapita, imagen) {
   laberinto.innerHTML='';
   var tabla = document.createElement('table');
@@ -51,21 +50,22 @@ function generarMapa(mapita, imagen) {
         var celda = document.createElement('td');
         if(mapita[i][j]=='*'){
           celda.setAttribute("class","pared");
-        } else if(mapita[i][j]=='o'){x=j;y=i;
-          celda.setAttribute("class",imagen);
+        } else if(mapita[i][j]=='o'){
+          x=j;
+          y=i;
+          celda.setAttribute("class", imagen);
         } else if (mapita[i][j]=='W') {
-          var xfinal=j;
-          var yfinal=i;
+          xfinal=j;
+          yfinal=i;
           celda.setAttribute("class","final");
         }
         fila.appendChild(celda);
-        //mapita[i][j]=celda;
     }
     tabla.appendChild(fila);
   }
   laberinto.appendChild(tabla);
 
-  /*if(x==xfinal && y==yfinal){
+  if(x==xfinal && y==yfinal){
     var tabla2 = document.createElement('table');
     tabla2.setAttribute("class","fondo");
     for (var i = 0; i < mapit.length; i++) {
@@ -85,8 +85,8 @@ function generarMapa(mapita, imagen) {
     var mensaje=document.createElement('h3');
     var texto= document.createTextNode('Lo Lograste!!!');
     mensaje.appendChild(texto);
-    laberinto.appendChild(mensaje);*/
-  //}
+    laberinto.appendChild(mensaje);
+  }
 }
 generarMapa(mapita,'empezar');
 
